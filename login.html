@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b1330">
   <meta name="description" content="Connexion ACX Flow. Saisissez votre adresse e-mail : vous êtes redirigé vers l'application de votre organisation pour y entrer votre mot de passe.">
-  <title>ACX Flow â€” Connexion</title>
+  <title>ACX Flow — Connexion</title>
   <style>
     :root {
       --navy: #0b1330;
@@ -88,13 +88,13 @@
         <a class="by-tag" href="https://acx.ma/">By ACX Maroc</a>
       </div>
       <div>
-        <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Accès à  lâ€™espace</div>
+        <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Accès à  l’espace</div>
         <h1>Votre application.<br><span class="gradient-text">sur mesure.</span></h1>
-        <p class="lead">La connexion ouvre <strong>lâ€™espace de votre organisation</strong> : son flux, son pointage, ses tableaux de bord et ses rapports. Une autre adresse nâ€™y entre pas.</p>
+        <p class="lead">La connexion ouvre <strong>l’espace de votre organisation</strong> : son flux, son pointage, ses tableaux de bord et ses rapports. Une autre adresse n’y entre pas.</p>
         <ul class="notes">
-          <li><span class="check" aria-hidden="true">âœ“</span> Une application par client</li>
-          <li><span class="check" aria-hidden="true">âœ“</span> Des droits limités au rà´le</li>
-          <li><span class="check" aria-hidden="true">âœ“</span> Une base qui ne se mélange pas</li>
+          <li><span class="check" aria-hidden="true">✓</span> Une application par client</li>
+          <li><span class="check" aria-hidden="true">✓</span> Des droits limités au rôle</li>
+          <li><span class="check" aria-hidden="true">✓</span> Une base qui ne se mélange pas</li>
         </ul>
       </div>
       <div class="story-foot">
@@ -108,7 +108,7 @@
       <div class="card">
         <div class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> ACX Flow</div>
         <h2>Connexion</h2>
-        <p>Saisissez lâ€™adresse attribuée à  votre organisation : vous serez redirigé vers votre espace pour y entrer votre mot de passe.</p>
+        <p>Saisissez l’adresse attribuée à  votre organisation : vous serez redirigé vers votre espace pour y entrer votre mot de passe.</p>
         <form id="login-form" novalidate>
           <label class="field" id="email-field">Adresse e-mail
             <input id="email" name="email" type="email" autocomplete="username" inputmode="email" placeholder="prenom@organisation.ma" required>
@@ -117,7 +117,7 @@
           <button class="button" id="submit" type="submit">Continuer</button>
           <div class="notice" id="notice" role="status"></div>
         </form>
-        <a class="back" href="index.html">â† Retour à  lâ€™accueil</a>
+        <a class="back" href="index.html">← Retour à  l’accueil</a>
       </div>
     </section>
   </main>
@@ -137,7 +137,7 @@
     const VDM_LOGIN_URL = "";
 
     // Table de routage : domaine e-mail -> produit.
-    // Nouveau client lourd = une ligne ici, aucun changement cà´té produit.
+    // Nouveau client lourd = une ligne ici, aucun changement côté produit.
     const PRODUCTS = [
       { domain: "vdmanager.com", loginUrl: VDM_LOGIN_URL, espace: "l'espace VD" },
     ];
@@ -164,7 +164,7 @@
       event.preventDefault();
       notice.classList.remove("show");
       const address = email.value.trim().toLowerCase();
-      const emailMessage = !address ? "Indiquez votre adresse." : (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(address) ? "Cette adresse nâ€™a pas le bon format." : "");
+      const emailMessage = !address ? "Indiquez votre adresse." : (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(address) ? "Cette adresse n’a pas le bon format." : "");
       setError(emailField, emailError, email, emailMessage);
       if (emailMessage) return;
 
@@ -193,7 +193,7 @@
         // Redirection vers le produit, e-mail pré-rempli. Le mot de passe
         // n'est JAMAIS demandé ni transmis par le portail.
         submit.setAttribute("aria-busy", "true");
-        submit.textContent = "Redirection vers " + product.espace + "â€¦";
+        submit.textContent = "Redirection vers " + product.espace + "…";
         const target = new URL(product.loginUrl);
         target.searchParams.set("email", address);
         target.searchParams.set("from", "flow");
