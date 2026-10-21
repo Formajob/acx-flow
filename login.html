@@ -136,10 +136,27 @@
     // ------------------------------------------------------------------
     const VDM_LOGIN_URL = "";
 
+    /**
+     * URL de la page login VDM effectivement utilisee.
+     *
+     * En production, seule la constante ci-dessus compte : si elle est
+     * vide, le portail affiche la notice d'attente (aucune redirection vers
+     * une adresse devinerie). En local (localhost / 127.0.0.1), on deduit
+     * l'instance VDM locale pour permettre le test de bout en bout.
+     */
+    function resolveVdmLoginUrl() {
+      if (VDM_LOGIN_URL) return VDM_LOGIN_URL;
+      const host = window.location.hostname;
+      if (host === "localhost" || host === "127.0.0.1") {
+        return "http://localhost:3000/login";
+      }
+      return "";
+    }
+
     // Table de routage : domaine e-mail -> produit.
     // Nouveau client lourd = une ligne ici, aucun changement côté produit.
     const PRODUCTS = [
-      { domain: "vdmanager.com", loginUrl: VDM_LOGIN_URL, espace: "l'espace VD" },
+      { domain: "vdmanager.com", loginUrl: resolveVdmLoginUrl(), espace: "l'espace VD" },
     ];
 
     const form = document.getElementById("login-form");
@@ -179,15 +196,27 @@
         const button = document.getElementById("vdm-button");
         if (form) form.style.display = "none";
         if (panel) panel.classList.remove("hidden");
-        button.href = VDM_LOGIN_URL || "#";
+        const vdmLoginUrl = resolveVdmLoginUrl();
+        if (vdmLoginUrl) {
+          // Meme contrat que la table PRODUCTS : e-mail pre-rempli et
+          // marqueur d'origine, pour que VDM affiche le bon message.
+          const target = new URL(vdmLoginUrl);
+          target.searchParams.set("email", address);
+          target.searchParams.set("from", "flow");
+          button.href = target.toString();
+        } else {
+          button.href = "#";
+        }
         button.onclick = (ev) => {
-          if (!VDM_LOGIN_URL) {
+          if (!vdmLoginUrl) {
             ev.preventDefault();
             alert("La page login VDM n'est pas encore configurée. Contactez votre administrateur.");
           }
         };
         return;
-      }      const product = PRODUCTS.find((p) => p.domain === domain && p.loginUrl);
+      }
+
+      const product = PRODUCTS.find((p) => p.domain === domain && p.loginUrl);
 
       if (product) {
         // Redirection vers le produit, e-mail pré-rempli. Le mot de passe
