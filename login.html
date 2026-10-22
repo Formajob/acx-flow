@@ -65,6 +65,10 @@
     .button:hover { transform: translateY(-2px); background: #17234b; }
     .button:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid rgba(38,212,234,.65); outline-offset: 3px; }
     .button[aria-busy="true"] { cursor: progress; opacity: .72; transform: none; }
+    .product-options { display: flex; gap: 8px; justify-content: center; align-items: stretch; flex-wrap: nowrap; }
+    .product-button { display: inline-flex; min-width: 0; min-height: 46px; flex: 1 1 0; align-items: center; justify-content: center; gap: 5px; padding: 10px 6px; border-radius: 999px; color: var(--navy); background: var(--cyan); font-size: 13px; font-weight: 750; text-decoration: none; white-space: nowrap; }
+    .product-button[aria-disabled="true"] { color: var(--ink); background: #dfe3eb; }
+    .product-lock { flex: 0 0 auto; font-size: 13px; }
     .notice { display: none; margin-top: 16px; padding: 14px; border-radius: 16px; color: #243006; background: #f3fbe3; font-size: 13.5px; line-height: 1.55; }
     .notice.show { display: block; }
     .back { display: inline-flex; margin-top: 18px; color: #536079; font-size: 13px; font-weight: 750; text-decoration: none; }
@@ -119,14 +123,11 @@
         </form>
         <div id="vdm-panel" class="hidden" style="margin-top: 18px; padding: 16px; border: 1px solid var(--line); border-radius: 16px; background: #f6f7fb; text-align: center;">
           <p style="margin: 0 0 12px; font-size: 14px; color: var(--muted);">Votre organisation utilise <strong style="color: var(--ink);">VD PROJET</strong>.</p>
-          <div style="display: flex; gap: 12px; justify-content: center; align-items: center; flex-wrap: wrap;">
-            <a id="vdm-button" href="#" style="display: inline-block; padding: 12px 28px; background: var(--cyan); color: var(--navy); font-weight: 700; border-radius: 999px; text-decoration: none; letter-spacing: .02em;\">VD PROJET →</a>
-            <a id="pgv-button" href="#" style="display: inline-block; padding: 12px 28px; background: var(--muted); color: var(--ink); font-weight: 700; border-radius: 999px; text-decoration: none; letter-spacing: .02em; position: relative;">PGV <span style="position: absolute; top: 50%; transform: translateY(-50%); right: -8px; width: 12px; height: 12px; border: 2px solid var(--ink); border-radius: 50; font-size: 10px; text-align: center; line-height: 1; title: 'Verrouillé'>🔒</span></a>
-            <a id="americana-button" href="#" style="display: inline-block; padding: 12px 28px; background: var(--muted); color: var(--ink); font-weight: 700; border-radius: 999px; text-decoration: none; letter-spacing: .02em; position: relative;">Americana <span style="position: absolute; top: 50%; transform: translateY(-50%); right: -8px; width: 12px; height: 12px; border: 2px solid var(--ink); border-radius: 50; font-size: 10px; text-align: center; line-height: 1; title: 'Verrouillé'>🔒</span></a>
+          <div class="product-options">
+            <a id="vdm-button" class="product-button" href="#">VD PROJET</a>
+            <a id="pgv-button" class="product-button" href="#" aria-disabled="true" title="Accès verrouillé">PGV <span class="product-lock" aria-hidden="true">🔒</span></a>
+            <a id="americana-button" class="product-button" href="#" aria-disabled="true" title="Accès verrouillé">AMERICANA <span class="product-lock" aria-hidden="true">🔒</span></a>
           </div>
-          <a id="vdm-button" href="#" style="display: inline-block; padding: 12px 28px; background: var(--cyan); color: var(--navy); font-weight: 700; border-radius: 999px; text-decoration: none; letter-spacing: .02em;">VD PROJET →</a>
-            <a id="pgv-button" href="#" style="display: inline-block; padding: 12px 28px; background: var(--muted); color: var(--ink); font-weight: 700; border-radius: 999px; text-decoration: none; letter-spacing: .02em; position: relative;">PGV <span style="position: absolute; top: 50%; transform: translateY(-50%); right: -12px; width: 12px; height: 12px; border: 2px solid var(--ink); border-radius: 50; font-size: 10px; text-align: center; line-height: 1; title: 'Verrouillé'>🔒</span></a>
-            <a id="americana-button" href="#" style="display: inline-block; padding: 12px 28px; background: var(--muted); color: var(--ink); font-weight: 700; border-radius: 999px; text-decoration: none; letter-spacing: .02em; position: relative;">Americana <span style="position: absolute; top: 50%; transform: translateY(-50%); right: -12px; width: 12px; height: 12px; border: 2px solid var(--ink); border-radius: 50; font-size: 10px; text-align: center; line-height: 1; title: 'Verrouillé'>🔒</span></a>
         </div>
 
         <a class="back" href="index.html">← Retour à  l’accueil</a>
