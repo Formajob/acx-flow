@@ -117,6 +117,11 @@
           <button class="button" id="submit" type="submit">Continuer</button>
           <div class="notice" id="notice" role="status"></div>
         </form>
+        <div id="vdm-panel" class="hidden" style="margin-top: 18px; padding: 16px; border: 1px solid var(--line); border-radius: 16px; background: #f6f7fb; text-align: center;">
+          <p style="margin: 0 0 12px; font-size: 14px; color: var(--muted);">Votre organisation utilise <strong style="color: var(--ink);">VD PROJET</strong>.</p>
+          <a id="vdm-button" href="#" style="display: inline-block; padding: 12px 28px; background: var(--cyan); color: var(--navy); font-weight: 700; border-radius: 999px; text-decoration: none; letter-spacing: .02em;">VD PROJET →</a>
+        </div>
+
         <a class="back" href="index.html">← Retour à  l’accueil</a>
       </div>
     </section>
@@ -141,16 +146,11 @@
      *
      * En production, seule la constante ci-dessus compte : si elle est
      * vide, le portail affiche la notice d'attente (aucune redirection vers
-     * une adresse devinerie). En local (localhost / 127.0.0.1), on deduit
-     * l'instance VDM locale pour permettre le test de bout en bout.
+     * une adresse devinee). Aucune URL de developpement n'est codee en dur
+     * ici : le portail pointe toujours vers l'instance de production.
      */
     function resolveVdmLoginUrl() {
-      if (VDM_LOGIN_URL) return VDM_LOGIN_URL;
-      const host = window.location.hostname;
-      if (host === "localhost" || host === "127.0.0.1") {
-        return "http://localhost:3000/login";
-      }
-      return "";
+      return VDM_LOGIN_URL.trim();
     }
 
     // Table de routage : domaine e-mail -> produit.
@@ -239,11 +239,6 @@
     });
   </script>
 <script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a4d41f7c3ffec69e',t:'MTc5MjQ1ODQxOA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f","spa":2}' crossorigin="anonymous"></script>
-
-    <div id="vdm-panel" class="hidden" style="margin-top: 16px; padding: 16px; border: 1px solid rgba(255,255,255,.12); border-radius: 12px; background: rgba(255,255,255,.04); text-align: center;">
-      <p style="margin: 0 0 12px; font-size: 14px; color: #c5cee2;">Votre organisation utilise <strong style="color: white;">VD PROJET</strong>.</p>
-      <a id="vdm-button" href="#" style="display: inline-block; padding: 12px 28px; background: var(--cyan); color: var(--navy); font-weight: 700; border-radius: 999px; text-decoration: none; letter-spacing: .02em;">VD PROJET →</a>
-    </div>
 </body>
 </html>
 
