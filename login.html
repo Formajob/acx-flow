@@ -130,6 +130,17 @@
           </div>
         </div>
 
+        <div id="xc-panel" class="hidden" style="margin-top: 18px; padding: 16px; border: 1px solid var(--line); border-radius: 16px; background: #f6f7fb; text-align: center;">
+          <p style="margin: 0 0 12px; font-size: 14px; color: var(--muted);">Votre organisation utilise <strong style="color: var(--ink);">Xceed</strong>.</p>
+          <div class="product-options">
+            <a id="xc-button" class="product-button" href="#">Xceed</a>
+            <div class="product-activities" style="flex: 1 1 0; display: flex; flex-direction: column; align-items: stretch; margin-left: 8px;">
+              <a id="juridique-button" class="product-button" href="https://flowjuridiquexceed.vercel.app">Juridique</a>
+              <a id="amc-button" class="product-button" href="flowamc.vercel.app">AMC</a>
+            </div>
+          </div>
+        </div>
+
         <a class="back" href="index.html">← Retour à  l’accueil</a>
       </div>
     </section>
@@ -147,6 +158,8 @@
     // e-mails @vdmanager.com affichent la notice d'attente au lieu de
     // rediriger.
     // ------------------------------------------------------------------
+    const XCEED_JURIDIQUE_URL = "https://flowjuridiquexceed.vercel.app";
+    const XCEED_AMC_URL = "https://flowamc.vercel.app";
     const VDM_LOGIN_URL = "https://vdm3.vercel.app/login";
 
     /**
@@ -198,6 +211,24 @@
       // d'un paramètre d'URL (protection contre la redirection ouverte).
       // Solution temporaire : si le mail appartient à  VDM, on affiche un bouton
       // "VD PROJET" qui renvoie vers la page login VDM (URL à  configurer).
+      // Le site Xceed est adressé via un e-mail dédié : jawad@acx.ma.
+      // C'est le client Xceed et Juridique en est son activité, qui
+      // s'affiche sous le bouton Xceed (non dans le panneau VD PROJET).
+      if (address === "jawad@acx.ma") {
+        const xcPanel = document.getElementById("xc-panel");
+        const juridiqueButton = document.getElementById("juridique-button");
+        const amcButton = document.getElementById("amc-button");
+        if (xcPanel) xcPanel.classList.remove("hidden");
+        if (juridiqueButton) juridiqueButton.href = XCEED_JURIDIQUE_URL;
+        if (amcButton) amcButton.href = XCEED_AMC_URL;
+        return;
+      }
+
+      if (address === "zouzou.douni@gmail.com") {
+        window.location.href = XCEED_AMC_URL;
+        return;
+      }
+
       if (domain === "vdmanager.com") {
         const form = document.getElementById("login-form");
         const panel = document.getElementById("vdm-panel");
