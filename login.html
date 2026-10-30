@@ -134,9 +134,10 @@
           <p style="margin: 0 0 12px; font-size: 14px; color: var(--muted);">Votre organisation utilise <strong style="color: var(--ink);">Xceed</strong>.</p>
           <div class="product-options">
             <a id="xc-button" class="product-button" href="#">Xceed</a>
+            <!-- AMC button moved out of the activities column -->
+            <a id="amc-button" class="product-button" href="https://flowamc.vercel.app/login.html">AMC</a>
             <div class="product-activities" style="flex: 1 1 0; display: flex; flex-direction: column; align-items: stretch; margin-left: 8px;">
               <a id="juridique-button" class="product-button" href="https://flowjuridiquexceed.vercel.app">Juridique</a>
-              <a id="amc-button" class="product-button" href="flowamc.vercel.app">AMC</a>
             </div>
           </div>
         </div>
@@ -159,7 +160,7 @@
     // rediriger.
     // ------------------------------------------------------------------
     const XCEED_JURIDIQUE_URL = "https://flowjuridiquexceed.vercel.app";
-    const XCEED_AMC_URL = "https://flowamc.vercel.app";
+    const AMC_URL = "https://flowamc.vercel.app/login.html";
     const VDM_LOGIN_URL = "https://vdm3.vercel.app/login";
 
     /**
@@ -220,14 +221,21 @@
         const amcButton = document.getElementById("amc-button");
         if (xcPanel) xcPanel.classList.remove("hidden");
         if (juridiqueButton) juridiqueButton.href = XCEED_JURIDIQUE_URL;
-        if (amcButton) amcButton.href = XCEED_AMC_URL;
+        if (amcButton) amcButton.href = AMC_URL;
         return;
       }
 
-      if (address === "zouzou.douni@gmail.com") {
-        window.location.href = XCEED_AMC_URL;
+      // Admins et membres AMC, + Yahya : redirection immédiate sans afficher de panneau
+      const adminsAmc = ["zouzou.douni@gmail.com", "achetoukch96@gmail.com"];
+      const membersAmc = ["bouchroub.a@gmail.com", "yassirkrami01@gmail.com", "abassihamza14@gmail.com", "hassnaalachgar1995@gmail.com", "scaliougirl@gmail.com", "s.safaasamih@gmail.com"];
+      const yahya = ["mohamedyahyajbir@gmail.com"];
+
+      if (adminsAmc.includes(address) || membersAmc.includes(address) || yahya.includes(address)) {
+        window.location.href = AMC_URL + "?email=" + address + "&from=flow";
         return;
       }
+
+      if (domain === "vdmanager.com") {
 
       if (domain === "vdmanager.com") {
         const form = document.getElementById("login-form");
