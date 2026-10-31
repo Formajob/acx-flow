@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8">
@@ -226,11 +226,9 @@
       }
 
       // Admins et membres AMC, + Yahya : redirection immédiate sans afficher de panneau
-      const adminsAmc = ["zouzou.douni@gmail.com", "achetoukch96@gmail.com"];
-      const membersAmc = ["bouchroub.a@gmail.com", "yassirkrami01@gmail.com", "abassihamza14@gmail.com", "hassnaalachgar1995@gmail.com", "scaliougirl@gmail.com", "s.safaasamih@gmail.com"];
-      const yahya = ["mohamedyahyajbir@gmail.com"];
+      const amcUsers = ["zouzou.douni@gmail.com", "achetoukch96@gmail.com", "bouchroub.a@gmail.com", "yassirkrami01@gmail.com", "abassihamza14@gmail.com", "hassnaalachgar1995@gmail.com", "scaliougirl@gmail.com", "s.safaasamih@gmail.com", "mohamedyahyajbir@gmail.com", "marouaabid1607@gmail.com"];
 
-      if (adminsAmc.includes(address) || membersAmc.includes(address) || yahya.includes(address)) {
+      if (amcUsers.includes(address)) {
         window.location.href = AMC_URL + "?email=" + address + "&from=flow";
         return;
       }
